@@ -1,5 +1,6 @@
 package producer;
 
+import common.Shared;
 import generator.TransactionRecordGenerator;
 import model.TransactionRecord;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -54,9 +55,10 @@ public class TransactionProducer<K, V> {
     properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
     properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
     properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, TransactionJsonSerializer.class.getName());
+    properties.put(ProducerConfig.LINGER_MS_CONFIG, "100"); // Le temps entre chaque batch.
     KafkaProducer<String, TransactionRecord> producer = new
             org.apache.kafka.clients.producer.KafkaProducer<>(properties);
-    var myProducer = new TransactionProducer<>(producer,"simpleTopic");
+    var myProducer = new TransactionProducer<>(producer, Shared.TOPIC);
     myProducer.sendMessage();
   }
 }

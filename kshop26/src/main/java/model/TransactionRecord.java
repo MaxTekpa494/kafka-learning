@@ -46,4 +46,15 @@ public class TransactionRecord {
     public void setStoreId(int storeId) {
         this.storeId = storeId;
     }
+
+    @Override
+    public String toString(){
+        return "TransactionRecord{" +
+                "nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", idProduit=" + idProduit +
+                ", prix=" + prix +
+                ", storeId=" + storeId +
+                '}';
+    }
 }
