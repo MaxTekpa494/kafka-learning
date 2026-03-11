@@ -140,9 +140,6 @@ rm -rf /tmp/zookeeper
 # NETTOYAGE
 # ==============================================================================
 
-# Arrêter brokers et Zookeeper (Ctrl+C)
-
-# Nettoyer (optionnel)
 rm -rf /tmp/kafka-logs*
 rm -rf /tmp/zookeeper
 
