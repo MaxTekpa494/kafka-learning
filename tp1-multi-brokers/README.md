@@ -38,7 +38,7 @@ Pour chaque fichier, modifier **3 lignes** :
 
 ---
 
-## 🚀 Étapes du TP
+## Étapes du TP
 
 ### 1. Démarrage de Zookeeper
 ```bash
