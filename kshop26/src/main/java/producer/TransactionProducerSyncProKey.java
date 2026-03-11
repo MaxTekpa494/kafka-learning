@@ -1,6 +1,6 @@
 package producer;
 
-import common.Shared;
+import model.Shared;
 import generator.TransactionRecordGenerator;
 import model.TransactionRecord;
 import org.apache.kafka.clients.producer.KafkaProducer;

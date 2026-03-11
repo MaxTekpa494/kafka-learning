@@ -12,10 +12,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
 
-public class TransactionConsumerProKey<K, V> {
+public class TransactionConsumerGroup<K, V> {
   private final KafkaConsumer<K, V> consumer;
 
-  TransactionConsumerProKey(KafkaConsumer<K, V> consumer) {
+  TransactionConsumerGroup(KafkaConsumer<K, V> consumer) {
     this.consumer = Objects.requireNonNull(consumer);
   }
 
@@ -25,25 +25,25 @@ public class TransactionConsumerProKey<K, V> {
     boolean isRunning = true;
     while (isRunning) {
       var records = consumer.poll(oneSecond);
-      if(records.isEmpty()){
+      if (records.isEmpty()) {
         System.out.println("Pas de message");
-      }else{
+      } else {
         // On fait trois partitions pour voir où vont les messages
         // ./bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic simpleTopic --partitions 3 --replication-factor 1
         records.forEach(record ->
-                System.out.println(record.partition() +" | "+record.key() + " = " + record.value()
+                System.out.println(record.partition() + " | " + record.key() + " = " + record.value()
                 ));
       }
     }
     close();
   }
 
-  public void subscribe(List<String> topics){
+  public void subscribe(List<String> topics) {
     Objects.requireNonNull(topics);
     consumer.subscribe(topics);
   }
 
-  private void close(){
+  private void close() {
     consumer.close();
   }
 
@@ -55,7 +55,7 @@ public class TransactionConsumerProKey<K, V> {
     properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, TransactionJsonDeserializer.class.getName());
     properties.put(ConsumerConfig.GROUP_ID_CONFIG, Shared.GROUP_ID);
     KafkaConsumer<String, TransactionRecord> consumer = new KafkaConsumer<>(properties);
-    var myConsumer = new TransactionConsumerProKey<>(consumer);
+    var myConsumer = new TransactionConsumerGroup<>(consumer);
     myConsumer.subscribe(List.of(Shared.TOPIC));
     myConsumer.consume();
   }

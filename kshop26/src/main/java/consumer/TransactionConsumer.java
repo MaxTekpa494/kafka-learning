@@ -1,12 +1,11 @@
 package consumer;
 
-import common.Shared;
+import model.Shared;
 import model.TransactionRecord;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import serialisation.TransactionJsonDeserializer;
-import serialisation.TransactionJsonSerializer;
 
 import java.time.Duration;
 import java.util.List;
