@@ -160,14 +160,11 @@ Partition: 0    Leader: 2    Replicas: 2,0,1    Isr: 2,0,1
 rm -rf /tmp/kafka-logs*
 rm -rf /tmp/zookeeper
 
-# Redémarrer dans l'ordre
 ./bin/zookeeper-server-start.sh config/zookeeper.properties
 ./bin/kafka-server-start.sh config/server.properties
 ./bin/kafka-server-start.sh config/server2.properties
 ./bin/kafka-server-start.sh config/server3.properties
 ```
-
-**Prévention :** En production, utiliser `./bin/kafka-server-stop.sh` pour un arrêt propre.
 
 ---
 
